@@ -32,6 +32,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOME_SCLN RCTL_T(ES_NTIL)
 
 
+enum {
+    TD_ES_QUES_ES_IEQUE,
+};
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_ES_QUES_ES_IEQUE] = ACTION_TAP_DANCE_DOUBLE(ES_QUES, ES_IQUE),
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -62,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         KC_CAPS, ES_EXLM, ES_DQUO, ES_HASH, ES_DLR , ES_PERC,                      ES_ASTR,    ES_7,    ES_8,    ES_9, ES_MINS, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LCTL, ES_LCBR, ES_RCBR, ES_LPRN, ES_RPRN, ES_QUES,                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
+        KC_LCTL, ES_LCBR, ES_RCBR, ES_LPRN, ES_RPRN, TD(TD_ES_QUES_ES_IEQUE),                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT, ES_LBRC, ES_RBRC, ES_LABK, ES_RABK,  ES_EQL,                         ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
