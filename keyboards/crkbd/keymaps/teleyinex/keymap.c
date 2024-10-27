@@ -34,10 +34,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum {
     TD_ES_QUES_ES_IEQUE,
+    TD_ES_LCBR_ES_RCBR,
+    TD_ES_LPRN_ES_RPRN,
+    TD_ES_LBRC_ES_RBRC,
 };
 
 tap_dance_action_t tap_dance_actions[] = {
     [TD_ES_QUES_ES_IEQUE] = ACTION_TAP_DANCE_DOUBLE(ES_QUES, ES_IQUE),
+    [TD_ES_LCBR_ES_RCBR] = ACTION_TAP_DANCE_DOUBLE(ES_LCBR, ES_RCBR),
+    [TD_ES_LPRN_ES_RPRN] = ACTION_TAP_DANCE_DOUBLE(ES_LPRN, ES_RPRN),
+    [TD_ES_LBRC_ES_RBRC] = ACTION_TAP_DANCE_DOUBLE(ES_LBRC, ES_RBRC),
 };
 
 
@@ -71,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         KC_CAPS, ES_EXLM, ES_DQUO, ES_HASH, ES_DLR , ES_PERC,                      ES_ASTR,    ES_7,    ES_8,    ES_9, ES_MINS, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LCTL, ES_LCBR, ES_RCBR, ES_LPRN, ES_RPRN, TD(TD_ES_QUES_ES_IEQUE),                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
+        KC_LCTL, TD(TD_ES_LCBR_ES_RCBR),TD(TD_ES_LBRC_ES_RBRC) , TD(TD_ES_LPRN_ES_RPRN), ES_EQL, TD(TD_ES_QUES_ES_IEQUE),                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LSFT, ES_LBRC, ES_RBRC, ES_LABK, ES_RABK,  ES_EQL,                         ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
+        KC_LSFT, TD(TD_ES_LBRC_ES_RBRC), ES_RBRC, ES_LABK, ES_RABK,  ES_EQL,                         ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_LALT
                                         //`--------------------------'  `--------------------------'
@@ -113,6 +119,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Else, let QMK process the KC_ESC keycode as usual
         return true;
 
-    }
+
+
+    };
     return true;
 };
