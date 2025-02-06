@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keymap_spanish.h"
 
 // Left-hand home row mods
-#define HOME_A LCTL_T(KC_A)
+#define HOME_A LSFT_T(KC_A)
 #define HOME_S LALT_T(KC_S)
-#define HOME_D LGUI_T(KC_D)
-#define HOME_F LSFT_T(KC_F)
+#define HOME_D LCTL_T(KC_D)
+#define HOME_F LGUI_T(KC_F)
 
 // Right-hand home row mods
-#define HOME_J RSFT_T(KC_J)
-#define HOME_K RGUI_T(KC_K)
+#define HOME_J RGUI_T(KC_J)
+#define HOME_K LCTL_T(KC_K)
 #define HOME_L LALT_T(KC_L)
-#define HOME_SCLN RCTL_T(ES_NTIL)
+#define HOME_SCLN RSFT_T(ES_NTIL)
 
 
 enum {
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, ES_COMM,  ES_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                     KC_LALT,  MT(MOD_LGUI,KC_LCTL),  LT(1,KC_SPC),     LT(3,KC_SPC),   LT(2,KC_ENT), KC_RALT
+                     TT(4),  KC_MEH,  LT(1,KC_SPC),     LT(3,KC_SPC),   LT(2,KC_ENT), KC_HYPR
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, ES_SCLN, ES_COLN, ES_UNDS, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT,  _______, KC_RALT
+                                          _______, _______,  KC_SPC,     KC_ENT,  _______,_______
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT, TD(TD_ES_LBRC_ES_RBRC), ES_RBRC, ES_LABK, ES_RABK,  ES_EQL,                         ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_LALT
+                                            _______, _______,  KC_SPC,     KC_ENT, _______, _______
                                         //`--------------------------'  `--------------------------'
 
   ),
@@ -94,10 +94,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT, XXXXXXX,  ES_NOT, ES_CCED, ES_PERC, XXXXXXX,                      RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_LALT
+                                            _______, _______,  KC_SPC,     KC_ENT, _______,_______
+                                        //`--------------------------'  `--------------------------'
+
+  ),
+   [4] = LAYOUT_split_3x6_3(
+     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+        XXXXXXX, ES_IEXL,   ES_AT, ES_HASH,  ES_DLR, XXXXXXX,                      XXXXXXX, XXXXXXX, MS_UP, ES_MORD, XXXXXXX, KC_BSPC,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        KC_LCTL, ES_FORD, ES_AMPR, ES_PIPE, ES_BSLS, ES_IQUE,                      MS_LEFT, MS_LEFT, MS_DOWN, MS_RGHT, MS_RGHT,  ES_GRV,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        KC_LSFT, XXXXXXX,  ES_NOT, ES_CCED, ES_PERC, XXXXXXX,                      XXXXXXX, MS_WHLD ,  MS_WHLU, XXXXXXX, XXXXXXX, XXXXXXX,
+    //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                            _______, _______,  KC_SPC,    MS_BTN1, MS_BTN2,_______
                                         //`--------------------------'  `--------------------------'
 
   )
+
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
