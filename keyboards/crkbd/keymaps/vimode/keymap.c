@@ -258,7 +258,6 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
-    return rotation;
 }
 
 bool oled_task_user(){
