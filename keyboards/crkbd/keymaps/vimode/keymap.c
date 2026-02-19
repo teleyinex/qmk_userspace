@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, ES_COMM,  ES_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                     TG(4),  MO(2), LT(1, KC_SPC),                              LT(3,KC_SPC),   LT(2,KC_ENT), KC_HYPR
+                     TG(4),  MO(2), LT(1, KC_SPC),                              KC_SPC,   LT(3,KC_ENT), KC_HYPR
                                       //`--------------------------'  `--------------------------'
 
 
@@ -91,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [2] = LAYOUT_split_3x6_3(
      //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       XXXXXXX , ES_EXLM, ES_DQUO, ES_HASH, ES_DLR , ES_PERC,                      ES_ASTR,    ES_7,    ES_8,    ES_9, ES_MINS, KC_BSPC,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_ASTR,    ES_7,    ES_8,    ES_9, ES_MINS, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        XXXXXXX, ES_LCBR, ES_RCBR, ES_LPRN, ES_RPRN, ES_EQL,                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_SLSH,    ES_4,    ES_5,    ES_6, ES_PLUS, ES_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       XXXXXXX , ES_LBRC, ES_RBRC, ES_LABK, ES_RABK,  TD(TD_ES_QUES_ES_IEQUE),      ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        ES_0,    ES_1,    ES_2,    ES_3,  ES_DOT, KC_RSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             _______, _______,  _______,     KC_SPC, _______, _______
                                         //`--------------------------'  `--------------------------'
@@ -106,15 +106,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_split_3x6_3(
      //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        XXXXXXX, ES_IEXL,   ES_AT, ES_HASH,  ES_DLR, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,KC_BSPC,
+       ES_AMPR, ES_EXLM,   ES_AT, ES_HASH,  ES_DLR, ES_PERC,                      XXXXXXX, ES_IEXL, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        XXXXXXX, ES_MINS, ES_PLUS, ES_ASTR, ES_SLSH, XXXXXXX,                      KC_MPLY, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX ,
+       ES_PIPE, ES_LCBR, ES_RCBR, ES_LPRN, ES_RPRN,  ES_EQL,                      KC_MPLY, ES_DQUO, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       XXXXXXX , XXXXXXX, ES_AMPR, ES_PIPE, ES_BSLS, XXXXXXX,                     XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       ES_BSLS, ES_LBRC, ES_RBRC, ES_LABK, ES_RABK, ES_QUES,                      XXXXXXX, ES_IQUE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            _______, _______, _______,     KC_SPC, _______,_______
+                                            _______, _______,  _______,     KC_SPC, _______, _______
                                         //`--------------------------'  `--------------------------'
-
 
   ),
    [4] = LAYOUT_split_3x6_3(
@@ -248,6 +247,15 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_A:
         case HOME_SCLN:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(3, KC_ENT):
             return true;
         default:
             return false;
