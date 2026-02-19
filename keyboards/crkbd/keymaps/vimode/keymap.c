@@ -42,7 +42,6 @@ enum custom_keycodes {
     BACK_WORD = SAFE_RANGE,
     FORWARD_WORD,
     VIM_VIS_TOG,
-    VIM_ESC,
 };
 
 
@@ -133,14 +132,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case (VIM_VIS_TOG):
     if (record->event.pressed) {
             visual_mode = !visual_mode;
-            }
-            return false;
-
-        case (VIM_ESC):
-    if (record->event.pressed) {
-            visual_mode = false;
-            tap_code(KC_ESC);
-            layer_move(0);
             }
             return false;
 
