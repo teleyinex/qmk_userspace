@@ -1,6 +1,6 @@
 RGBLIGHT_ENABLE = no
 BACKLIGHT_ENABLE = no
-WPM_ENABLE = no # Enable word per minute counter
+WPM_ENABLE = yes # Enable word per minute counter
 LTO_ENABLE = yes  # Makes hex file smaller
 OLED_ENABLE = yes # Enable OLEDs
 MOUSEKEY_ENABLE = no
