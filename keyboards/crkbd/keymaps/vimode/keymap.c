@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         TO(0), ES_IEXL,   ES_AT, ES_HASH,  ES_DLR, XXXXXXX,                      XXXXXXX, XXXXXXX, OM_U, XXXXXXX, XXXXXXX, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LCTL, XXXXXXX, QK_DYNAMIC_TAPPING_TERM_DOWN, QK_DYNAMIC_TAPPING_TERM_UP, QK_DYNAMIC_TAPPING_TERM_PRINT, XXXXXXX,                      XXXXXXX, OM_L, OM_D, OM_R, OM_SLOW,  ES_GRV,
+        KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, OM_L, OM_D, OM_R, OM_SLOW,  ES_GRV,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, OM_W_D , OM_W_U, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
