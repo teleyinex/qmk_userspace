@@ -211,6 +211,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(3, KC_ENT):
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_A:      // LSFT_T(KC_A)
