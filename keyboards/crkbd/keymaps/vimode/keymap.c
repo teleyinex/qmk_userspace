@@ -308,15 +308,15 @@ bool oled_task_user(){
     // RIGHT DISPLAY: real-time WPM graph
     // =====================================================================
     } else {
-        // WPM history buffer - 32 samples (matches OLED width when rotated)
-        #define WPM_GRAPH_SAMPLES 32
+        // WPM history buffer - 16 samples (one per line of OLED height)
+        #define WPM_GRAPH_SAMPLES 16
         #define WPM_GRAPH_MAX     120  // scale ceiling in WPM
-        #define WPM_UPDATE_MS     200  // sampling interval in milliseconds
+        #define WPM_UPDATE_MS     300  // sampling interval in milliseconds
 
         static uint8_t  wpm_history[WPM_GRAPH_SAMPLES] = {0};
         static uint32_t last_wpm_update                 = 0;
 
-        // Sample WPM at fixed interval and shift history left
+        // Sample WPM at fixed interval and shift history upward
         if (timer_elapsed32(last_wpm_update) > WPM_UPDATE_MS) {
             memmove(wpm_history, wpm_history + 1, WPM_GRAPH_SAMPLES - 1);
             uint8_t wpm = get_current_wpm();
@@ -325,21 +325,25 @@ bool oled_task_user(){
         }
 
         // Draw WPM graph pixel by pixel
-        // x = time (left = oldest, right = newest)
-        // y = WPM value scaled to OLED height (32px)
-        oled_clear();
-        for (uint8_t x = 0; x < WPM_GRAPH_SAMPLES; x++) {
-            uint8_t height = (wpm_history[x] * 32) / WPM_GRAPH_MAX;
-            for (uint8_t y = 0; y < 32; y++) {
-                oled_write_pixel(x, 31 - y, y < height);
+        // With OLED_ROTATION_270: 32px wide (x), 128px tall (y)
+        // Each row = one sample, bar grows from left (x=0) to right (x=31)
+        for (uint8_t row = 0; row < WPM_GRAPH_SAMPLES; row++) {
+            uint8_t bar_width = (wpm_history[row] * 32) / WPM_GRAPH_MAX;
+            for (uint8_t x = 0; x < 32; x++) {
+                // each row is 8px tall
+                for (uint8_t py = 0; py < 7; py++) {
+                    oled_write_pixel(x, row * 8 + py, x < bar_width);
+                }
+                // 1px gap between rows
+                oled_write_pixel(x, row * 8 + 7, false);
             }
         }
 
-        // Current WPM as text overlaid on graph
-        char wpm_str[5];
-        snprintf(wpm_str, sizeof(wpm_str), "%3d", get_current_wpm());
+        // Current WPM as text at top
+        char wpm_str[6];
+        snprintf(wpm_str, sizeof(wpm_str), "%3dw", get_current_wpm());
         oled_set_cursor(0, 0);
-        oled_write(wpm_str, false);
+        oled_write(wpm_str, true); // inverted so it stands out over the graph
 
         return false;
     }
