@@ -45,19 +45,6 @@ enum custom_keycodes {
     VIM_ESC,
 };
 
-enum {
-    TD_ES_QUES_ES_IEQUE,
-    TD_ES_LCBR_ES_RCBR,
-    TD_ES_LPRN_ES_RPRN,
-    TD_ES_LBRC_ES_RBRC,
-};
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_ES_QUES_ES_IEQUE] = ACTION_TAP_DANCE_DOUBLE(ES_IQUE, ES_QUES),
-    [TD_ES_LCBR_ES_RCBR] = ACTION_TAP_DANCE_DOUBLE(ES_LCBR, ES_RCBR),
-    [TD_ES_LPRN_ES_RPRN] = ACTION_TAP_DANCE_DOUBLE(ES_LPRN, ES_RPRN),
-    [TD_ES_LBRC_ES_RBRC] = ACTION_TAP_DANCE_DOUBLE(ES_LBRC, ES_RBRC),
-};
 
 static bool visual_mode = false;
 
