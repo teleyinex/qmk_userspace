@@ -32,10 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOME_SCLN RSFT_T(ES_NTIL)
 
 enum layer_names {
-    _BL,
-    _FL,
-    _CL,
-    _ML,
+    _BASE,
+    _NAV,
+    _NUM,
+    _SYM,
+    _MOUSE,
 };
 
 enum custom_keycodes {
